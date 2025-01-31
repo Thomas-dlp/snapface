@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { filter, interval, map, Observable, take, tap } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component';
 import { FaceSnapService } from './services/face-snaps.service';
@@ -13,7 +13,9 @@ import { FaceSnap } from './models/face-snap';
   imports: [
     HeaderComponent,
     RouterOutlet,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
    
 ],
   templateUrl: './app.component.html',
@@ -26,14 +28,9 @@ constructor(private faceSnapServices:FaceSnapService){}
 
 
   ngOnInit(): void {
-   this.faceSnaps=this.faceSnapServices.getFaceSnaps();
-interval(1000).pipe(
-  take(3),
-  tap(console.log),
-).subscribe();
+ 
   }
  
-logger(text:string){
-  console.log(`Log: ${text}`);
-}
+
+
 }
