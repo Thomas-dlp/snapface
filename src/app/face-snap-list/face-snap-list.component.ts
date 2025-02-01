@@ -4,6 +4,8 @@ import { FaceSnapComponent } from '../face-snap/face-snap.component';
 import { FaceSnapService } from '../services/face-snaps.service';
 
 import { Observable } from 'rxjs';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -11,23 +13,22 @@ import { Observable } from 'rxjs';
   selector: 'app-face-snap-list',
   imports: [
     FaceSnapComponent,
-    
+    AsyncPipe,
+    CommonModule
   ],
   templateUrl: './face-snap-list.component.html',
   styleUrl: './face-snap-list.component.scss'
 })
 export class FaceSnapListComponent implements OnInit {
+ 
   faceSnaps!:FaceSnap[];
-  //faceSnaps$!: Observable<FaceSnap[]>;
+  faceSnaps$!: Observable<FaceSnap[]>;
 
   
-  constructor(private faceSnapsService: FaceSnapService){
-    console.log(this.faceSnapsService.getFaceSnaps());
-  }
+  constructor(private faceSnapsService: FaceSnapService){}
   
   ngOnInit(): void{
-   this.faceSnaps= this.faceSnapsService.getFaceSnaps();
-   
+   this.faceSnaps$= this.faceSnapsService.getAllFaceSnaps();
     
   }
 

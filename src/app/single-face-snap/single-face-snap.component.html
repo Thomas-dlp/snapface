@@ -1,6 +1,8 @@
-<div class="face-snap-card" [ngClass]="{snapped: faceSnap.snaps==1 }">
+<div class="face-snap-card" *ngIf="faceSnap$| async as faceSnap" [ngClass]="{snapped: buttonText =='Oops, unsnap!' }">
 <h2>{{faceSnap.title| titlecase}}</h2>
-    <img [src]= "faceSnap.faceSnapURL" [alt]="faceSnap.title">
+    
+    
+    <img [src]= "faceSnap.imageUrl" [alt]="faceSnap.title">
     @if (faceSnap.location){
          <p>Location: {{faceSnap.location}}</p>
     } @else {Localisation non spécifiée}
@@ -8,7 +10,8 @@
     <p>{{faceSnap.description}}</p>
     <p>FaceSnap crée le {{faceSnap.createdAt| date: 'longDate'}}.</p>
     <p>
-        <button (click)="onSnapButton()"> {{faceSnap.snapButtonText}}</button>
+        
+        <button (click)="onSnapButton(faceSnap.id)"> {{this.buttonText}} </button>
         {{faceSnap.snaps}} snaps.
     </p>
     <button (click)="onReturnButton()">Back</button>

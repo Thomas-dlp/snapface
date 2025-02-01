@@ -25,7 +25,7 @@
 <div class="face-snap-card" *ngIf="faceSnapsPreview$|async as faceSnap" >
     
         <h2>{{faceSnap.title}}</h2>
-            <img [src]= "faceSnap.faceSnapURL" [alt]="faceSnap.title">
+            <img [src]= "faceSnap.imageUrl" [alt]="faceSnap.title">
             @if (faceSnap.location){
                  <p>Location: {{faceSnap.location}}</p>
             } @else {Localisation non spécifiée}

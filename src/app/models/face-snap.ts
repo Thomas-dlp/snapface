@@ -1,14 +1,19 @@
 export class FaceSnap{
-    private _location: string='';
-    snaps: number=0;
-    snapButtonText: string='Oh Snap!';
-    id: string;
+    
+   
+    private _snapButtonText: string='Oh Snap!';
+    
 
-    constructor( public title: string,
+    constructor(
+                public id: number = +crypto.randomUUID(),
+                public title: string,
                 public description: string,
-                public faceSnapURL: string = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
-                public createdAt: Date =new Date(),){
-                    this.id= crypto.randomUUID();
+                public imageUrl: string = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
+                public createdAt: Date =new Date(),
+                public snaps: number=0,
+                public location: string=""
+            ){
+                    
                 }
     
     snapCountAction():void{
@@ -30,24 +35,20 @@ export class FaceSnap{
     }
     
     private setRemoveSnapButtonText(){
-        this.snapButtonText="Oh Snap!";
+        this._snapButtonText="Oh Snap!";
     }
 
     private setAddSnapButtonText(){
-        this.snapButtonText="Remove Snap!";
+        this._snapButtonText="Remove Snap!";
     }
-
-    set location(location:string) {
-        this._location=location;
-    }
+public getSnapButtonText():string {return this._snapButtonText;}  
+    
 
     withLocation(location: string): FaceSnap{
         this.location=location;
         return this;
     }
     
-    get location(): string{
-        return this._location;
-    }
+   
             
     }

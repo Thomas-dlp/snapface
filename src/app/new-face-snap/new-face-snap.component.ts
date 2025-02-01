@@ -24,7 +24,9 @@ export class NewFaceSnapComponent implements OnInit {
   urlRegex!: RegExp;
   newFaceSnap!: FaceSnap;
 
-  constructor(private formBuilder: FormBuilder, private faceSnapsService: FaceSnapService, private router: Router){}
+  constructor(private formBuilder: FormBuilder,
+     private faceSnapsService: FaceSnapService,
+     private router: Router){}
  
   ngOnInit(): void {
     this.urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/;
@@ -46,13 +48,9 @@ export class NewFaceSnapComponent implements OnInit {
     );  
   }
 
-  onSubmitForm(): void{ 
-    console.log(this.snapForm.value);
-    this.faceSnapsService.addFaceSnap(this.snapForm.value);
-    var routeId= this.faceSnapsService.getLastSnapID();
-     this.router.navigateByUrl(`/facesnaps/${routeId}`);
-     
-    
-    
+  onSubmitForm(){ 
+   this.faceSnapsService.addFaceSnap(this.snapForm.value).pipe(
+    tap((addedFacesnap)=>this.router.navigateByUrl(`/facesnaps/${addedFacesnap.id}`))
+   ).subscribe();
   }
 }
