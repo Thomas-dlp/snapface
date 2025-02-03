@@ -1,8 +1,8 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FaceSnapService } from '../services/face-snaps.service';
-import { FaceSnap } from '../models/face-snap';
+import { FaceSnapService } from '../../../core/services/face-snaps.service';
+import { FaceSnap } from '../../../core/models/face-snap';
 import { map, Observable, tap } from 'rxjs';
 import { timeoutProvider } from 'rxjs/internal/scheduler/timeoutProvider';
 import { Router } from '@angular/router';

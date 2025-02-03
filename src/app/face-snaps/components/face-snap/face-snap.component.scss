@@ -1,12 +1,20 @@
 .face-snap-card{
-    width: 50%;
-
+    width: 30%;
+    box-shadow: rgb(29, 44, 49) 1px 2px 6px;
+    box-sizing: border-box;
+    position: relative;
+    left: 50%;
+    transform:translate(-50%);
+    padding: 5px 10px;
+    margin: 10px;
     img{
         width: 100%;
     }
-
    
+    
+    
 }
+
 
 .snapped{
     background-color: rgba($color: lightgreen, $alpha: 0.4);
